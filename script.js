@@ -189,28 +189,3 @@ function isElementInViewport(el) {
     );
 }
 
-// Inicialización de EmailJS
-(function() {
-  emailjs.init("8Oxhtb4mWNeHWSQTD"); // <-- Sustituye con tu Public Key
-})();
-
-document.getElementById("contact-form").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  // Capturar valores del formulario
-  const params = {
-    name: document.getElementById("name").value,
-    emailid: document.getElementById("email").value,
-    message: document.getElementById("message").value,
-  };
-
-  // Enviar usando EmailJS
-  emailjs.send("service_mhmqkgq", "template_ih7uuln", params)
-    .then(function(response) {
-      alert("✅ Message sent successfully!");
-      document.getElementById("contact-form").reset();
-    }, function(error) {
-      alert("❌ Failed to send message. Please try again.");
-      console.error("EmailJS Error:", error);
-    });
-});
