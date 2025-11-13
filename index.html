@@ -406,12 +406,44 @@
             </div>
         </div>
     </footer>
+<script>
+// Inicializar EmailJS con tu Public Key
+(function() {
+  emailjs.init("8Oxhtb4mWNeHWSQTD"); // Reemplaza con tu clave pública de EmailJS
+})();
+
+// Escuchar el envío del formulario
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Evita el envío tradicional
+
+  // Capturar los datos del formulario
+  const params = {
+    from_name: document.getElementById("name").value,
+    email_id: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  };
+
+  // Enviar el correo con EmailJS
+  emailjs.send("service_mhmqkgq", "template_ih7uuln", params)
+    .then(function(response) {
+      console.log("SUCCESS!", response.status, response.text);
+      alert("✅ Message sent successfully!");
+      document.getElementById("contact-form").reset(); // Limpiar formulario
+    }, function(error) {
+      console.error("FAILED...", error);
+      alert("❌ Error sending message. Please try again.");
+    });
+});
+
+    
+</script> 
 
  <script src="script.js"></script>   
 
 </body>
 
 </html>
+
 
 
 
